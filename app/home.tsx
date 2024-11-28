@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ScrollView,
 } from 'react-native';
 
 const featuredHomes = [
@@ -38,7 +39,7 @@ const featuredHomes = [
 
 export default function Home() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       {/* Navbar */}
       <View style={styles.navbar}>
         <Text style={styles.companyName}>Ambu Rentals</Text>
@@ -51,9 +52,6 @@ export default function Home() {
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.navLink}>Features</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.navLink}>Help Center</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.loginButton}>
@@ -91,6 +89,7 @@ export default function Home() {
               <Text style={styles.cardDescription}>{item.description}</Text>
             </View>
           )}
+          scrollEnabled={false} // Disable FlatList's own scrolling
         />
       </View>
 
@@ -133,7 +132,7 @@ export default function Home() {
           © 2024 Ambu Rentals, Inc. • Privacy • Terms • Sitemap
         </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -141,6 +140,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  contentContainer: {
+    paddingBottom: 20, // Prevent content from cutting off at the end
   },
   navbar: {
     flexDirection: 'row',
